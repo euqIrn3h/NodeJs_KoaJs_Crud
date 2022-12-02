@@ -1,0 +1,10 @@
+<h1 class="display-4 mb-4"><%- title %></h1>
+
+<form method="POST" action="/deletecountry">
+    <div class="form-group">
+        <input value="<%= id%>" name="id" type="hidden">
+        <label>Are you Sure ??</label>
+    </div>
+    <input class="btn btn-danger my-2 col" value="Delete" type="submit">
+    <a class="btn btn-secondary my-2 mx-1 col" href="/">Back</a>
+</form>

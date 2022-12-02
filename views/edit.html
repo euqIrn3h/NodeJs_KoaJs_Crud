@@ -1,0 +1,10 @@
+<h1 class="display-4 mb-4"><%- title %></h1>
+
+<form method="POST" action="/editcountry">
+    <div class="form-group">
+        <input value="<%= id%>" name="id" type="hidden">
+        <input class="form-control" type="text" name="name">
+    </div>
+    <input class="btn btn-success my-2 col" value="Edit" type="submit">
+    <a class="btn btn-secondary my-2 mx-1 col" href="/">Back</a>
+</form>
