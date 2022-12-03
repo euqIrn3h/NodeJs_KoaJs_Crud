@@ -31,7 +31,18 @@ router.get('/deletecountry/:id', async ctx => {
     })
 })
 
-router.post('/addcountry', controller.add)
+router.post('/addcountry', async ctx => {
+    controller.create()
+        .then(
+            ctx.status = 200,
+            ctx.redirect('/')
+        )
+        .catch(err =>{
+            console.log(err)
+            ctx.status = 500
+            ctx.redirect('/')
+        })
+})
 router.post('/deletecountry', controller.del)
 router.post('/editcountry', controller.edit)
 
