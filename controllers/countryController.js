@@ -1,8 +1,6 @@
 const database = require('./../db.js');
 const Country = require('./../models/country.js');
 
-const countries = [{id:0, name:'India'}, {id:1, name:'Marrocos'} , {id:2, name:'Paquistão'} ]
-
 async function create(ctx){
     const body = ctx.request.body
     try {
@@ -39,38 +37,20 @@ async function update(ctx){
     }
 }
 
-async function edit(ctx){
-    const body = ctx.request.body
-    const countryNew = {
-        id: body.id,
-        name: body.name
-    }
-
-    countries.forEach(country => {
-        if(country.id == countryNew.id) {
-            country.name = countryNew.name
-        }
-    })
-    ctx.redirect('/')
-}
-
 async function del(ctx){
     const body = ctx.request.body
-    const id = body.id
-
-    countries.forEach(country => {
-        if(country.id == id) {
-            countries.splice(countries.indexOf(country), 1)
-        }
-    })
-    ctx.redirect('/')
+    try {
+        await database.sync();  
+        Country.destroy({ where: {Id: body.id}})
+        ctx.redirect('/')   
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 module.exports = {
     create: create,
     read: read,
     update: update,
-    edit: edit,
-    del: del,
-    countries: countries
+    del: del
 }
