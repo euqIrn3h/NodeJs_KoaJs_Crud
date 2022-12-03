@@ -6,9 +6,7 @@ const countries = [{id:0, name:'India'}, {id:1, name:'Marrocos'} , {id:2, name:'
 async function create(ctx){
     const body = ctx.request.body
     try {
-        const result = await database.sync();
-        console.log(result);
-        
+        await database.sync();      
         const Create = await Country.create({
             Name: body.name
         })
@@ -17,6 +15,16 @@ async function create(ctx){
         console.log(error);
     }
 };
+
+async function read(){
+    try {
+        await database.sync();  
+        const countries = await Country.findAll();
+        return countries
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 async function add(ctx){
     const body = ctx.request.body
@@ -57,7 +65,7 @@ async function del(ctx){
 
 module.exports = {
     create: create,
-    add : add,
+    read: read,
     edit: edit,
     del: del,
     countries: countries

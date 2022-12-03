@@ -1,8 +1,8 @@
-<h1 class="display-4 mb-4"><%- title %></h1>
+<h1 class="display-4 mb-4 text-light"><%- title %></h1>
 
 <form method="POST" action="/editcountry">
     <div class="form-group">
-        <input value="<%= id%>" name="id" type="hidden">
+        <input value="<%= Id%>" name="id" type="hidden">
         <input class="form-control" type="text" name="name">
     </div>
     <input class="btn btn-success my-2 col" value="Edit" type="submit">

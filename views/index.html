@@ -1,19 +1,16 @@
-<h1 class="mb-4"><%- title %></h1>
+<h1 class="mb-4 text-light"><%- title %></h1>
 
 
 <% countries.forEach(country => { %>
     <ul class="list-group list-group-horizontal">
-        <li class="list-group-item col my-2" >
-            <%= country.id %>
-        </li>
-        <li class="list-group-item col my-2" >
-            <%= country.name %>
+        <li class="list-group-item text-center col my-2" >
+            <%= country.Name %>
         </li>
         <li class="list-group-item my-2">
-            <a class="btn btn-primary" href="editcountry/<%= country.id%>">Edit</a>
+            <a class="btn btn-primary" href="editcountry/<%= country.Id%>">Edit</a>
         </li>
         <li class="list-group-item my-2">
-            <a class="btn btn-danger" href="deletecountry/<%= country.id%>">Delete</a>
+            <a class="btn btn-danger" href="deletecountry/<%= country.Id%>">Delete</a>
         </li>
     </ul>
 <% }) %>
