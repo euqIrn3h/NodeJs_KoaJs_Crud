@@ -7,13 +7,6 @@ var controller = require('./controllers/countryController.js')
 
 router.get('/', async ctx => {
     var countries = await controller.read()
-    .then(
-        ctx.status = 200
-    ).catch(err => { 
-        ctx.status = 404,
-        console.error(err)
-    })
-
     await ctx.render('index',{
         title: 'Countries Added',       
         countries:  countries || []
@@ -43,6 +36,6 @@ router.get('/deletecountry/:id', async ctx => {
 
 router.post('/addcountry', controller.create)
 router.post('/deletecountry', controller.del)
-router.post('/editcountry', controller.edit)
+router.post('/editcountry', controller.update)
 
 module.exports = router

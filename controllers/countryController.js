@@ -7,10 +7,10 @@ async function create(ctx){
     const body = ctx.request.body
     try {
         await database.sync();      
-        const Create = await Country.create({
+        await Country.create({
             Name: body.name
         })
-        console.log(Create);
+        ctx.redirect('/')
     } catch (error) {
         console.log(error);
     }
@@ -26,14 +26,17 @@ async function read(){
     }
 }
 
-async function add(ctx){
+async function update(ctx){
     const body = ctx.request.body
-    const country = {
-        id: countries.length+1,
-        name: body.name
+    try {
+        await database.sync();  
+        const country = await Country.findByPk(body.id);
+        country.Name = body.name;
+        await country.save();
+        ctx.redirect('/')   
+    } catch (error) {
+        console.log(error);
     }
-    countries.push(country)
-    ctx.redirect('/')
 }
 
 async function edit(ctx){
@@ -66,6 +69,7 @@ async function del(ctx){
 module.exports = {
     create: create,
     read: read,
+    update: update,
     edit: edit,
     del: del,
     countries: countries
